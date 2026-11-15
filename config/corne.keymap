@@ -16,19 +16,15 @@
             bindings = <&to 3>;
             key-positions = <38 39>;
         };
-
-        caps_lock {
-            bindings = <&caps_lock>;
-            key-positions = <12 35>;
-        };
     };
 
     behaviors {
-        caps_lock: caps_lock {
+        // Umschalt: 1x tippen/halten = Shift, 2x schnell tippen = Caps Lock
+        shift_caps: shift_caps {
             compatible = "zmk,behavior-tap-dance";
-            label = "CAPS_LOCK";
             #binding-cells = <0>;
-            bindings = <&kp LEFT_SHIFT>, <&kp LEFT_SHIFT>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LEFT_SHIFT>, <&kp CAPS>;
         };
     };
 
@@ -44,7 +40,7 @@
 
             bindings = <
 &kp TAB           &kp Q  &kp W  &kp E     &kp R      &kp T    &kp Y  &kp U       &kp I         &kp O    &kp P             &kp BSPC
-&kp LEFT_SHIFT    &kp A  &kp S  &kp D     &kp F      &kp G    &kp H  &kp J       &kp K         &kp L    &kp SEMI          &kp SQT
+&shift_caps       &kp A  &kp S  &kp D     &kp F      &kp G    &kp H  &kp J       &kp K         &kp L    &kp SEMI          &kp SQT
 &kp LEFT_CONTROL  &kp Z  &kp X  &kp C     &kp V      &kp B    &kp N  &kp M       &kp COMMA     &kp DOT  &kp LEFT_BRACKET  &kp ESC
                                 &kp LGUI  &kp SPACE  &to 0    &to 1  &kp RETURN  &kp LEFT_ALT
             >;
@@ -58,9 +54,9 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&trans  &kp LS(NUMBER_1)  &kp LS(MINUS)  &kp RA(Q)   &kp LS(NUMBER_4)  &kp NON_US_BACKSLASH        &kp SLASH   &kp RIGHT_BRACKET  &kp UP_ARROW    &kp LS(NUMBER_6)  &kp EQUAL              &trans
-&trans  &kp RA(MINUS)     &kp LS(N2)     &kp LS(N7)  &kp LS(N0)        &kp LS(NON_US_BACKSLASH)    &kp MINUS   &kp LEFT_ARROW     &kp DOWN_ARROW  &kp RIGHT         &kp RA(RIGHT_BRACKET)  &kp DELETE
-&trans  &kp RA(NUBS)      &kp RA(N8)     &kp RA(N9)  &kp HOME          &kp END                     &kp LS(N8)  &kp LS(N9)         &kp RA(N7)      &kp RA(N0)        &kp PIPE               &trans
+&trans  &kp LS(NUMBER_1)  &kp LS(MINUS)  &kp LA(L)   &kp LS(NUMBER_4)  &kp GRAVE                   &kp SLASH   &kp RIGHT_BRACKET  &kp UP_ARROW    &kp LS(NUMBER_6)  &kp EQUAL              &trans
+&trans  &kp LS(LA(N7))    &kp LS(N2)     &kp LS(N7)  &kp LS(N0)        &kp LS(GRAVE)               &kp MINUS   &kp LEFT_ARROW     &kp DOWN_ARROW  &kp RIGHT         &kp LA(N)              &kp DELETE
+&trans  &kp LA(N7)        &kp LA(N5)     &kp LA(N6)  &kp HOME          &kp END                     &kp LS(N8)  &kp LS(N9)         &kp LA(N8)      &kp LA(N9)        &kp PIPE               &trans
                                          &trans      &trans            &trans                      &to 2       &trans             &trans
             >;
         };
